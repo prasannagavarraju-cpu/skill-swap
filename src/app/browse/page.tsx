@@ -48,13 +48,13 @@ function BrowseContent() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-10">
-        <h1 className="text-4xl font-bold text-white mb-2">Browse Skills</h1>
-        <p className="text-gray-400">Discover skills people are offering and requesting</p>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">Browse Skills</h1>
+        <p className="text-gray-600 dark:text-gray-400">Discover skills people are offering and requesting</p>
       </div>
 
       {/* Search */}
       <div className="relative mb-8">
-        <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
         <input
@@ -62,7 +62,7 @@ function BrowseContent() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search skills..."
-          className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
+          className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl pl-12 pr-4 py-3.5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
         />
       </div>
 
@@ -76,7 +76,7 @@ function BrowseContent() {
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                 category === cat
                   ? "bg-indigo-600 text-white"
-                  : "glass text-gray-400 hover:text-white"
+                  : "glass text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
               }`}
             >
               {cat}
@@ -93,7 +93,7 @@ function BrowseContent() {
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               level === lvl
                 ? "bg-purple-600 text-white"
-                : "glass text-gray-400 hover:text-white"
+                : "glass text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
             }`}
           >
             {lvl === "All" ? "All Levels" : lvl.charAt(0) + lvl.slice(1).toLowerCase()}
@@ -111,7 +111,7 @@ function BrowseContent() {
       ) : skills.length === 0 ? (
         <div className="text-center py-20">
           <div className="text-5xl mb-4">🔍</div>
-          <p className="text-gray-400">No skills found. Try a different search.</p>
+          <p className="text-gray-600 dark:text-gray-400">No skills found. Try a different search.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

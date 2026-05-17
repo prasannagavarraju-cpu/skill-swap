@@ -44,33 +44,33 @@ export default function PostSkillPage() {
   return (
     <div className="min-h-screen max-w-2xl mx-auto px-4 sm:px-6 py-12">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-white mb-2">Post a Skill</h1>
-        <p className="text-gray-400">Share what you can teach or what you want to learn</p>
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">Post a Skill</h1>
+        <p className="text-gray-600 dark:text-gray-400">Share what you can teach or what you want to learn</p>
       </div>
 
-        {/* Posting as */}
-        <div className="glass rounded-xl px-5 py-4 mb-4 flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-            {session?.user?.name?.[0]?.toUpperCase()}
-          </div>
-          <div>
-            <p className="text-xs text-gray-500">Posting as</p>
-            <p className="text-white font-semibold text-sm">{session?.user?.name}</p>
-          </div>
+      {/* Posting as */}
+      <div className="glass rounded-xl px-5 py-4 mb-4 flex items-center gap-3">
+        <div className="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+          {session?.user?.name?.[0]?.toUpperCase()}
         </div>
+        <div>
+          <p className="text-xs text-gray-500">Posting as</p>
+          <p className="text-gray-900 dark:text-white font-semibold text-sm">{session?.user?.name}</p>
+        </div>
+      </div>
 
-        <div className="glass rounded-2xl p-8">
-          {success ? (
+      <div className="glass rounded-2xl p-8">
+        {success ? (
           <div className="text-center py-8">
             <div className="text-5xl mb-4">🎉</div>
-            <p className="text-white font-semibold text-lg">Skill posted!</p>
-            <p className="text-gray-400 text-sm mt-1">Redirecting to browse...</p>
+            <p className="text-gray-900 dark:text-white font-semibold text-lg">Skill posted!</p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm mt-1">Redirecting to browse...</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             {/* Offering / Requesting toggle */}
             <div>
-              <label className="text-gray-300 text-sm font-medium block mb-3">Type</label>
+              <label className="text-gray-700 dark:text-gray-300 text-sm font-medium block mb-3">Type</label>
               <div className="flex gap-3">
                 {[true, false].map((val) => (
                   <button
@@ -80,7 +80,7 @@ export default function PostSkillPage() {
                     className={`flex-1 py-2.5 rounded-xl text-sm font-medium transition-all ${
                       form.isOffering === val
                         ? val ? "bg-indigo-600 text-white" : "bg-pink-600 text-white"
-                        : "glass text-gray-400"
+                        : "glass text-gray-600 dark:text-gray-400"
                     }`}
                   >
                     {val ? "I'm offering" : "I'm requesting"}
@@ -90,31 +90,31 @@ export default function PostSkillPage() {
             </div>
 
             <div>
-              <label className="text-gray-300 text-sm font-medium block mb-2">Skill title</label>
+              <label className="text-gray-700 dark:text-gray-300 text-sm font-medium block mb-2">Skill title</label>
               <input
                 required
                 type="text"
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
                 placeholder="e.g. Python Programming, Guitar Lessons"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
               />
             </div>
 
             <div>
-              <label className="text-gray-300 text-sm font-medium block mb-2">Description</label>
+              <label className="text-gray-700 dark:text-gray-300 text-sm font-medium block mb-2">Description</label>
               <textarea
                 required
                 rows={4}
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 placeholder="Describe what you'll teach or what you want to learn..."
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors resize-none"
+                className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors resize-none"
               />
             </div>
 
             <div>
-              <label className="text-gray-300 text-sm font-medium block mb-2">
+              <label className="text-gray-700 dark:text-gray-300 text-sm font-medium block mb-2">
                 Your qualifications / background
               </label>
               <input
@@ -122,33 +122,33 @@ export default function PostSkillPage() {
                 value={form.credentials}
                 onChange={(e) => setForm({ ...form, credentials: e.target.value })}
                 placeholder="e.g. Self-taught, 5 years · CS Degree · Certified Trainer"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="text-gray-300 text-sm font-medium block mb-2">Category</label>
+                <label className="text-gray-700 dark:text-gray-300 text-sm font-medium block mb-2">Category</label>
                 <select
                   value={form.category}
                   onChange={(e) => setForm({ ...form, category: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-indigo-500 transition-colors"
                 >
                   {CATEGORIES.map((cat) => (
-                    <option key={cat} value={cat} className="bg-gray-900">{cat}</option>
+                    <option key={cat} value={cat} className="bg-white dark:bg-gray-900">{cat}</option>
                   ))}
                 </select>
               </div>
 
               <div>
-                <label className="text-gray-300 text-sm font-medium block mb-2">Level</label>
+                <label className="text-gray-700 dark:text-gray-300 text-sm font-medium block mb-2">Level</label>
                 <select
                   value={form.level}
                   onChange={(e) => setForm({ ...form, level: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl px-4 py-3 text-gray-900 dark:text-white focus:outline-none focus:border-indigo-500 transition-colors"
                 >
                   {LEVELS.map((lvl) => (
-                    <option key={lvl} value={lvl} className="bg-gray-900">
+                    <option key={lvl} value={lvl} className="bg-white dark:bg-gray-900">
                       {lvl.charAt(0) + lvl.slice(1).toLowerCase()}
                     </option>
                   ))}

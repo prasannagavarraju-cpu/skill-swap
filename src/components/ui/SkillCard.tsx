@@ -16,10 +16,10 @@ interface Skill {
 }
 
 const levelColors: Record<string, string> = {
-  BEGINNER: "text-green-400 bg-green-400/10",
-  INTERMEDIATE: "text-yellow-400 bg-yellow-400/10",
-  ADVANCED: "text-orange-400 bg-orange-400/10",
-  EXPERT: "text-red-400 bg-red-400/10",
+  BEGINNER: "text-green-600 dark:text-green-400 bg-green-500/10",
+  INTERMEDIATE: "text-yellow-600 dark:text-yellow-400 bg-yellow-500/10",
+  ADVANCED: "text-orange-600 dark:text-orange-400 bg-orange-500/10",
+  EXPERT: "text-red-600 dark:text-red-400 bg-red-500/10",
 };
 
 export default function SkillCard({ skill }: { skill: Skill }) {
@@ -42,19 +42,19 @@ export default function SkillCard({ skill }: { skill: Skill }) {
   return (
     <div className="glass rounded-2xl p-6 card-hover flex flex-col gap-4">
       <div className="flex items-start justify-between">
-        <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${levelColors[skill.level] || "text-gray-400 bg-gray-400/10"}`}>
+        <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${levelColors[skill.level] || "text-gray-500 dark:text-gray-400 bg-gray-400/10"}`}>
           {skill.level.charAt(0) + skill.level.slice(1).toLowerCase()}
         </span>
-        <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${skill.isOffering ? "text-indigo-400 bg-indigo-400/10" : "text-pink-400 bg-pink-400/10"}`}>
+        <span className={`px-2.5 py-1 rounded-lg text-xs font-medium ${skill.isOffering ? "text-indigo-600 dark:text-indigo-400 bg-indigo-400/10" : "text-pink-600 dark:text-pink-400 bg-pink-400/10"}`}>
           {skill.isOffering ? "Offering" : "Requesting"}
         </span>
       </div>
 
       <div>
-        <h3 className="text-white font-semibold text-lg mb-1">{skill.title}</h3>
-        <p className="text-gray-400 text-sm line-clamp-2">{skill.description}</p>
+        <h3 className="text-gray-900 dark:text-white font-semibold text-lg mb-1">{skill.title}</h3>
+        <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2">{skill.description}</p>
         {skill.credentials && (
-          <p className="text-indigo-300/70 text-xs mt-2 flex items-center gap-1">
+          <p className="text-indigo-500 dark:text-indigo-300/70 text-xs mt-2 flex items-center gap-1">
             <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
             </svg>
@@ -63,17 +63,17 @@ export default function SkillCard({ skill }: { skill: Skill }) {
         )}
       </div>
 
-      <div className="text-xs text-indigo-400 bg-indigo-400/10 px-2.5 py-1 rounded-lg w-fit">
+      <div className="text-xs text-indigo-600 dark:text-indigo-400 bg-indigo-400/10 px-2.5 py-1 rounded-lg w-fit">
         {skill.category}
       </div>
 
-      <div className="flex items-center justify-between mt-auto pt-3 border-t border-white/5">
+      <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-200 dark:border-white/5">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xs font-semibold">
             {skill.user.name?.[0]?.toUpperCase()}
           </div>
           <div>
-            <div className="text-white text-sm font-medium">{skill.user.name}</div>
+            <div className="text-gray-900 dark:text-white text-sm font-medium">{skill.user.name}</div>
             {skill.user.location && (
               <div className="text-gray-500 text-xs">{skill.user.location}</div>
             )}
@@ -86,7 +86,7 @@ export default function SkillCard({ skill }: { skill: Skill }) {
             disabled={loading || requested}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               requested
-                ? "bg-green-500/10 text-green-400 cursor-default"
+                ? "bg-green-500/10 text-green-600 dark:text-green-400 cursor-default"
                 : "bg-indigo-600 hover:bg-indigo-500 text-white"
             }`}
           >
