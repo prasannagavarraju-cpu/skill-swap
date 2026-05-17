@@ -10,6 +10,7 @@ interface Skill {
   category: string;
   level: string;
   isOffering: boolean;
+  credentials: string | null;
   user: { id: string; name: string; avatar: string | null; location: string | null };
   createdAt: string;
 }
@@ -52,6 +53,14 @@ export default function SkillCard({ skill }: { skill: Skill }) {
       <div>
         <h3 className="text-white font-semibold text-lg mb-1">{skill.title}</h3>
         <p className="text-gray-400 text-sm line-clamp-2">{skill.description}</p>
+        {skill.credentials && (
+          <p className="text-indigo-300/70 text-xs mt-2 flex items-center gap-1">
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+            </svg>
+            {skill.credentials}
+          </p>
+        )}
       </div>
 
       <div className="text-xs text-indigo-400 bg-indigo-400/10 px-2.5 py-1 rounded-lg w-fit">

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
+import Logo from "@/components/ui/Logo";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -12,12 +13,8 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-              </svg>
-            </div>
+          <Link href="/" className="flex items-center gap-2.5">
+            <Logo size={34} />
             <span className="text-white font-bold text-lg tracking-tight">SkillSwap</span>
           </Link>
 

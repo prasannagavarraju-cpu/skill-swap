@@ -37,7 +37,7 @@ function BrowseContent() {
 
       const res = await fetch(`/api/skills?${params.toString()}`);
       const data = await res.json();
-      setSkills(data);
+      setSkills(Array.isArray(data) ? data : []);
       setLoading(false);
     };
 

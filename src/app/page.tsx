@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "@/components/ui/Logo";
 
 const categories = [
   { name: "Technology", icon: "💻", count: "1.2k+" },
@@ -25,6 +26,9 @@ export default function HomePage() {
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20 text-center">
+          <div className="flex justify-center mb-6">
+            <Logo size={56} />
+          </div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-indigo-400 text-xs font-medium mb-8">
             <span className="w-2 h-2 bg-indigo-400 rounded-full animate-pulse" />
             Join 12,000+ skill swappers worldwide
@@ -78,15 +82,25 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { step: "01", title: "Post your skill", desc: "Share what you can teach — coding, cooking, languages, music, and more." },
-            { step: "02", title: "Find a match", desc: "Browse skills others are offering and send a swap request." },
-            { step: "03", title: "Start learning", desc: "Connect, schedule sessions, and grow together. No payment needed." },
+            { step: "01", title: "Post your skill", desc: "Share what you can teach — coding, cooking, languages, music, and more.", href: "/post-skill", cta: "Post a skill" },
+            { step: "02", title: "Find a match", desc: "Browse skills others are offering and send a swap request.", href: "/browse", cta: "Browse skills" },
+            { step: "03", title: "Start learning", desc: "Accept requests, connect, and grow together. No payment needed.", href: "/dashboard", cta: "Open dashboard" },
           ].map((item) => (
-            <div key={item.step} className="glass rounded-2xl p-8 card-hover">
+            <Link
+              key={item.step}
+              href={item.href}
+              className="glass rounded-2xl p-8 card-hover group flex flex-col"
+            >
               <div className="text-5xl font-black text-indigo-600/30 mb-4">{item.step}</div>
               <h3 className="text-white font-semibold text-lg mb-2">{item.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
-            </div>
+              <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1">{item.desc}</p>
+              <div className="flex items-center gap-2 text-indigo-400 text-sm font-medium group-hover:gap-3 transition-all">
+                {item.cta}
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </Link>
           ))}
         </div>
       </section>

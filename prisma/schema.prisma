@@ -32,6 +32,7 @@ model Skill {
   category    String
   level       Level    @default(BEGINNER)
   isOffering  Boolean  @default(true)
+  credentials String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

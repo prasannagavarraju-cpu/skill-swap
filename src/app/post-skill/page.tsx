@@ -16,6 +16,7 @@ export default function PostSkillPage() {
     category: "Technology",
     level: "BEGINNER",
     isOffering: true,
+    credentials: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -47,8 +48,19 @@ export default function PostSkillPage() {
         <p className="text-gray-400">Share what you can teach or what you want to learn</p>
       </div>
 
-      <div className="glass rounded-2xl p-8">
-        {success ? (
+        {/* Posting as */}
+        <div className="glass rounded-xl px-5 py-4 mb-4 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full bg-indigo-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+            {session?.user?.name?.[0]?.toUpperCase()}
+          </div>
+          <div>
+            <p className="text-xs text-gray-500">Posting as</p>
+            <p className="text-white font-semibold text-sm">{session?.user?.name}</p>
+          </div>
+        </div>
+
+        <div className="glass rounded-2xl p-8">
+          {success ? (
           <div className="text-center py-8">
             <div className="text-5xl mb-4">🎉</div>
             <p className="text-white font-semibold text-lg">Skill posted!</p>
@@ -98,6 +110,19 @@ export default function PostSkillPage() {
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 placeholder="Describe what you'll teach or what you want to learn..."
                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors resize-none"
+              />
+            </div>
+
+            <div>
+              <label className="text-gray-300 text-sm font-medium block mb-2">
+                Your qualifications / background
+              </label>
+              <input
+                type="text"
+                value={form.credentials}
+                onChange={(e) => setForm({ ...form, credentials: e.target.value })}
+                placeholder="e.g. Self-taught, 5 years · CS Degree · Certified Trainer"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors"
               />
             </div>
 
