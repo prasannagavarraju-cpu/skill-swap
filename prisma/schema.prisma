@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  password      String
+  bio           String?
+  avatar        String?
+  location      String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  skills        Skill[]
+  sentRequests     SwapRequest[] @relation("SentRequests")
+  receivedRequests SwapRequest[] @relation("ReceivedRequests")
+  reviews       Review[]  @relation("ReviewsGiven")
+  reviewsReceived Review[] @relation("ReviewsReceived")
+}
+
+model Skill {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  category    String
+  level       Level    @default(BEGINNER)
+  isOffering  Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  swapRequests SwapRequest[]
+}
+
+model SwapRequest {
+  id          String        @id @default(cuid())
+  message     String?
+  status      RequestStatus @default(PENDING)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  senderId    String
+  sender      User          @relation("SentRequests", fields: [senderId], references: [id], onDelete: Cascade)
+
+  receiverId  String
+  receiver    User          @relation("ReceivedRequests", fields: [receiverId], references: [id], onDelete: Cascade)
+
+  skillId     String
+  skill       Skill         @relation(fields: [skillId], references: [id], onDelete: Cascade)
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int
+  comment   String?
+  createdAt DateTime @default(now())
+
+  reviewerId  String
+  reviewer    User   @relation("ReviewsGiven", fields: [reviewerId], references: [id], onDelete: Cascade)
+
+  revieweeId  String
+  reviewee    User   @relation("ReviewsReceived", fields: [revieweeId], references: [id], onDelete: Cascade)
+}
+
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  COMPLETED
+}
